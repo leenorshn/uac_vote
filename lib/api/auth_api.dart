@@ -29,12 +29,12 @@ class AuthApi {
 
     var dd = rUser.data;
     Elector elector = Elector(
-      id: rUser.$id,
-      matricul: dd["matricule"],
-      name: dd["name"],
-      faculte: dd["faculte"],
-      promo: dd["promotion"],
-    );
+        id: rUser.$id,
+        matricul: dd["matricule"],
+        name: dd["name"],
+        faculte: dd["faculte"],
+        promo: dd["promotion"],
+        vote: dd["vote"]);
 
     yield elector;
   }
@@ -61,6 +61,7 @@ class AuthApi {
       name: dd["name"],
       faculte: dd["faculte"],
       promo: dd["promotion"],
+      vote: dd["vote"],
     );
 
     return elector;

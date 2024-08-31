@@ -26,7 +26,9 @@ class BilletinVoteScreen extends StatelessWidget {
         bloc: BlocProvider.of<LoginBloc>(context)..add(LoadUserEvent()),
         builder: (context, stat) {
           if (stat is UserIsLoading) {
-            return const LinearProgressIndicator();
+            return const Center(
+              child: Text("Loading ..."),
+            );
           } else if (stat is UserLoaded) {
             return BlocBuilder<BulletinBloc, BulletinState>(
               builder: (context, state) {
@@ -110,11 +112,15 @@ class BilletinVoteScreen extends StatelessWidget {
                     ),
                   );
                 }
-                return Container();
+                return const Center(
+                  child: Text("error"),
+                );
               },
             );
           } else {
-            return Container();
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           }
         },
       ),

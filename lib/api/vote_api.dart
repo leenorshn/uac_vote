@@ -9,6 +9,7 @@ class VoteApi {
   var client = AppwriteClient().getClientApp();
 
   Future updateVoteOnClient(String id) async {
+    print("user_id: $id");
     var db = Databases(client);
     await db.updateDocument(
         databaseId: "66d1e1a800342cf76b75",
@@ -35,10 +36,14 @@ class VoteApi {
       vote: dd["votes"],
     );
 
+    print("**********");
+    print(candid.id);
+    print(candidat.id);
+    print("**********");
     await db.updateDocument(
         databaseId: "66d1e1a800342cf76b75",
-        collectionId: "66d1e27900021542dbbc",
-        documentId: candid.id,
+        collectionId: "66d1e1bb0023afbc7721",
+        documentId: candidat.id,
         data: {"votes": candid.vote + 1});
   }
 }

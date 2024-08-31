@@ -5,6 +5,7 @@ class Elector {
   String matricul;
   String faculte;
   String promo;
+  bool vote;
 
   Elector({
     required this.id,
@@ -12,5 +13,6 @@ class Elector {
     required this.name,
     required this.faculte,
     required this.promo,
+    required this.vote,
   });
 }

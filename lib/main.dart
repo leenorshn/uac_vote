@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uac_vote2/api/auth_api.dart';
+import 'package:uac_vote2/api/calender_api.dart';
 import 'package:uac_vote2/api/condidate_api.dart';
 import 'package:uac_vote2/blocs/President/president_bloc.dart';
 import 'package:uac_vote2/blocs/bulletin/bulletin_bloc.dart';
 import 'package:uac_vote2/blocs/delegue/delegue_bloc.dart';
 import 'package:uac_vote2/blocs/login/login_bloc.dart';
+import 'package:uac_vote2/blocs/program/program_bloc.dart';
 import 'package:uac_vote2/screens/login_screen.dart';
 import 'package:uac_vote2/screens/main_screen.dart';
+import 'package:uac_vote2/screens/programme_screen.dart';
 import 'package:uac_vote2/screens/vote_president_screen.dart';
 import 'package:uac_vote2/screens/vote_vice_president_screen.dart';
 import 'package:uac_vote2/screens/welcome_screen.dart';
@@ -53,6 +56,10 @@ class MyApp extends StatelessWidget {
               VicePresidentBloc(CandidatApi())..add(LoadVicePresidentEvent()),
         ),
         BlocProvider(
+          create: (context) =>
+              ProgramBloc(CalenderApi())..add(LoadProgramEvent()),
+        ),
+        BlocProvider(
           create: (context) => BulletinBloc()..add(LoadBulletinEvent()),
         ),
       ],
@@ -69,7 +76,8 @@ class MyApp extends StatelessWidget {
           "vote_president": (context) => const VotePresidentScreen(),
           "vote_vice_president": (context) => const VoteVicePresidentScreen(),
           "main_screen": (context) => const MainScreen(),
-          "login_screen": (context) => const LoginScreen()
+          "login_screen": (context) => const LoginScreen(),
+          "calendriel_screen": (context) => const ProgrammeScreen()
         },
       ),
     );

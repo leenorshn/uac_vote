@@ -52,7 +52,9 @@ class WelcomeScreen extends StatelessWidget {
               height: 32,
             ),
             OutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed("calendriel_screen");
+              },
               style: ElevatedButton.styleFrom(
                 //minimumSize: Size(width, height)
                 minimumSize: const Size.fromHeight(56),
