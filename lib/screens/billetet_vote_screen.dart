@@ -22,15 +22,7 @@ class BilletinVoteScreen extends StatelessWidget {
         centerTitle: true,
         elevation: 0,
       ),
-      body: BlocBuilder<LoginBloc, LoginState>(
-        bloc: BlocProvider.of<LoginBloc>(context)..add(LoadUserEvent()),
-        builder: (context, stat) {
-          if (stat is UserIsLoading) {
-            return const Center(
-              child: Text("Loading ..."),
-            );
-          } else if (stat is UserLoaded) {
-            return BlocBuilder<BulletinBloc, BulletinState>(
+      body:  BlocBuilder<BulletinBloc, BulletinState>(
               builder: (context, state) {
                 if (state is BulletinLoadedSuccess) {
                   return SingleChildScrollView(
@@ -86,18 +78,18 @@ class BilletinVoteScreen extends StatelessWidget {
                                   /// effectuer 3 processus de votes
                                   /// 1 president
                                   await VoteApi()
-                                      .addVote(state.data[0], stat.user);
+                                      .addVote(state.data[0], );
                                   // /// 2 vice president
                                   await VoteApi()
-                                      .addVote(state.data[1], stat.user);
+                                      .addVote(state.data[1], );
                                   //
                                   // /// 3 delegue
                                   await VoteApi()
-                                      .addVote(state.data[2], stat.user);
+                                      .addVote(state.data[2], );
 
                                   /// app
                                   await VoteApi()
-                                      .updateVoteOnClient(stat.user.id);
+                                      .updateVoteOnClient();
                                   BlocProvider.of<BulletinBloc>(context)
                                       .add(VideBulletinEvent());
                                   Navigator.of(context)
@@ -116,13 +108,8 @@ class BilletinVoteScreen extends StatelessWidget {
                   child: Text("error"),
                 );
               },
-            );
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
+
+
       ),
     );
   }
